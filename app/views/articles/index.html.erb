@@ -24,11 +24,12 @@
         <td><%= description %></td>
         <td><%= link_to 'Show', article_path(article) %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Delete', article_path(article), method: :delete %></td> <!-- link_to 'Delete' just makes a word Delete that is clickable. article_path is the path to the article (article) given inside from the each loop, so each article listed has this. The method: :delete identifies to not go to the article through the article_path, but to get the article ID from the article_path and send it to the destroy action in the articles_controller. -->
+        <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?"} %></td> <!-- link_to 'Delete' just makes a word Delete that is clickable. article_path is the path to the article (article) given inside from the each loop, so each article listed has this. The method: :delete identifies to not go to the article through the article_path, but to get the article ID from the article_path and send it to the destroy action in the articles_controller. -->
       </tr>
     <% end %>
-    <tr>
-      <td><%= link_to 'Create New Article', new_article_path %></td>
-    </tr>
   </tbody>
 </table>
+
+<p>
+  <%= link_to 'Create New Article', new_article_path %>
+</p>

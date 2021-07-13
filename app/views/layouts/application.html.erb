@@ -11,9 +11,7 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
+    <%= render 'layouts/messages' %> <!-- See _messages.html.erb under layouts folder. Starting with an underscore means it's a partial, so Rails will know this. This is only a few lines but is good practice for keeping the body of application.html.erb short. Also, partials are good for DRY principle. -->
     <%= yield %>
   </body>
 </html>

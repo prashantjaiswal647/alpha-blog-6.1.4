@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy] # set_article private method, below, is used before these actions are executed. This follows DRY principles. Don't Repeat Yourself
+
   def show
-    @article = Article.find(params[:id])
   end
 
   def index
@@ -12,11 +13,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
-    @article = Article.new(params.require(:article).permit(:title, :description)) # This makes an article by requiring the inputs with params, but only permitting :title and :description hash keys to come through, as a security feature. It used to be params[:article]
+    @article = Article.new(article_params) # This makes an article by requiring the inputs with params, but only permitting :title and :description hash keys to come through, as a security feature (SEE article_params METHOD BELOW, DRY principle was applied later!). It used to be params[:article]
     # render plain: @article.inspect # To see the creation for testing purposes
     if @article.save
       flash[:notice] = "Article was created successfully." # There are two types of flash, notice and alert. Alert is usually for when something goes wrong. This is to show that the article was successfully created.
@@ -28,8 +28,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update(params.require(:article).permit(:title, :description))
+    if @article.update(article_params)
       flash[:notice] = "Article was updated successfully."
       redirect_to @article # Send to the article
     else
@@ -38,9 +37,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path # Send to the 'index' table of Articles
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :description)
   end
 
 end
