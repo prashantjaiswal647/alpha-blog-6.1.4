@@ -1,15 +1,72 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+// Navigation Bar
 .navbar {
+  background-color: #000000 !important;
+}
 
-  background-color: #FDF6EA !important;
-  
-  }
-  
-   
-  
-  .navbar-brand {
-  
+.navbar-brand {
   font-size: 3rem;
-  
-  }
+}
+
+.nav-link {
+    color: white !important;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+// Home Page
+#home-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+// Jumbotron
+.jumbotron {
+  background-image: asset-url('jumbotron-background.jpg'); // Automatically finds image in images folder.
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  background-size: 120%;
+  height: 650px;
+  border-radius: 10px; // Rounded corners
+  border: 3px solid black; // Border outline
+}
+
+.display-4 {
+  margin-top: 25px;
+}
+
+.jumbo-p {
+  margin-top: 100px;
+}
+
+#jumbo-button {
+  margin-top: 65px;
+}
+
+// Footer
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+  background-color: lightgrey;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
+#link-tristan {
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-decoration: none;
+}
