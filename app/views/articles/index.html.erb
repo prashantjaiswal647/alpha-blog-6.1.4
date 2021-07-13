@@ -1,36 +1,33 @@
-<div id="page-content"> <!-- make entire page background gray with CSS -->
+<h1 class="text-center mt-4">Listing all articles</h1> <!-- mt-4 stands for margin-top of 4 (idk what units)-->
 
-  <h1 class="text-center mt-4">Listing all articles</h1> <!-- mt-4 stands for margin-top of 4 (idk what units)-->
-
-  <div class="container">
-    <% @articles.each do |article|  %>
-      <div class="row justify-content-md-center"> <!-- Center the articles & put each one in a new row div -->
-        <div class="col-8 mt-4"> <!-- Take up 8 columns of 12, add margin on top of 4. -->
-          <div class="card text-center shadow mb-5 bg-white rounded"> <!-- shadow mb-5 bg-white rounded makes a shadow of the cards -->
-            <div class="card-header fst-italic"> <!-- make font italic -->
-              by Tristan Lee
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5> <!-- bootstrap text-success is green color -->
-              <p class="card-text"><%= truncate(article.description, length: 100) %></p> <!-- Instead of my manual truncation of the description, Bootstrap has functionality for that. Wow. truncated to max lenght of 100 characters.-->
-              <!-- <a href="#" class="btn btn-outline-success">View</a> -->
-              <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
-              <!-- <a href="#" class="btn btn-outline-primary">Edit</a> -->
-              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary" %>
-              <!-- <a href="#" class="btn btn-outline-danger">Delete</a> -->
-              <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger" %> <!-- These buttons were converted from HTML to Ruby buttons to link to the correct pages -->
-            </div>
-            <div class="card-footer text-muted">
-              <small>Created <%= time_ago_in_words(article.created_at) %> ago,
-              edited <%= time_ago_in_words(article.updated_at) %> ago</small>
-            </div>
+<div class="container">
+  <% @articles.each do |article|  %>
+    <div class="row justify-content-md-center"> <!-- Center the articles & put each one in a new row div -->
+      <div class="col-8 mt-4"> <!-- Take up 8 columns of 12, add margin on top of 4. -->
+        <div class="card text-center shadow mb-5 bg-white rounded"> <!-- shadow mb-5 bg-white rounded makes a shadow of the cards -->
+          <div class="card-header fst-italic"> <!-- make font italic -->
+            by Tristan Lee
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5> <!-- bootstrap text-success is green color -->
+            <p class="card-text"><%= truncate(article.description, length: 100) %></p> <!-- Instead of my manual truncation of the description, Bootstrap has functionality for that. Wow. truncated to max lenght of 100 characters.-->
+            <!-- <a href="#" class="btn btn-outline-success">View</a> -->
+            <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+            <!-- <a href="#" class="btn btn-outline-primary">Edit</a> -->
+            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary" %>
+            <!-- <a href="#" class="btn btn-outline-danger">Delete</a> -->
+            <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger" %> <!-- These buttons were converted from HTML to Ruby buttons to link to the correct pages -->
+          </div>
+          <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(article.created_at) %> ago,
+            edited <%= time_ago_in_words(article.updated_at) %> ago</small>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
-
-  <p>
-    <%= link_to 'Create New Article', new_article_path %>
-  </p>
+    </div>
+  <% end %>
 </div>
+
+<p>
+  <%= link_to 'Create New Article', new_article_path %>
+</p>

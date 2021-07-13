@@ -5,6 +5,14 @@
   background-color: #000000 !important;
 }
 
+#dropdown-black {
+  background-color: #000 !important;
+}
+
+.dropdown-item:hover {
+  background-color: rgb(30, 30, 30) !important;
+}
+
 .navbar-brand {
   font-size: 3rem;
 }
@@ -71,7 +79,7 @@ body {
   text-decoration: none;
 }
 
-//
+// New & Edit article form
 #new-form-color {
   background-color: rgba(12, 70, 146, 0.822);
 }
