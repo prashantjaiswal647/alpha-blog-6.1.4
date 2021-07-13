@@ -19,12 +19,14 @@
         </div>
 
         <div class="form-group row justify-content-center mt-3 mb-4 ">
-          <%= f.submit class: "btn btn-outline-light btn-lg col-md-auto" %> <!-- IMPORTANT, no comma needed between submit and class! -->
+          <%= f.submit class: "btn btn-outline-light shadow-none btn-lg col-md-auto" %> <!-- IMPORTANT, no comma needed between submit and class! -->
         </div>
       <% end %>
     </div>
 
-    <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "col-md-3 text-center", id: "new-form-color-cancel" %>
+    <div class="col-md-3 text-center mb-3">
+      <%= link_to '[ Cancel and return to articles listing ]', articles_path, id: "new-form-color-cancel" %>
+    </div>
   </div>
 
 </div>

@@ -9,8 +9,12 @@
   background-color: #000 !important;
 }
 
-.dropdown-item:hover {
-  background-color: rgb(30, 30, 30) !important;
+.dropdown-item {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgb(30, 30, 30) !important;
+  }
 }
 
 .navbar-brand {
@@ -87,4 +91,40 @@ body {
 #new-form-color-cancel {
   color: rgba(12, 70, 146, 0.822);
   text-decoration: none;
+}
+
+// Articles Listing Page
+.no-outline {
+  text-decoration: none;
+}
+
+// About Page
+
+#about-line {
+  position: relative;
+  left: 50%;
+  width: 100px; /* Width & Margin-Left work together to keep line centered */
+  height: 1px; /* Line height*/
+  background-color: #129CF3;
+  margin-left: -50px;
+}
+
+.adjusted-spacing p {
+  margin: 0px;
+}
+
+.about-no-outline,
+.about-no-outline:hover,
+.about-no-outline:focus,
+.about-no-outline:active {
+  text-decoration: none;
+  color: #129CF3;
+}
+
+.p-about-indent {
+  text-indent: 25px;
+}
+
+.about-purple {
+  color:rgb(160, 50, 160)
 }
