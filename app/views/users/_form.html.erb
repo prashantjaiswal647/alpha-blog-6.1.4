@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group row justify-content-center mt-3 mb-4 ">
-          <%= f.submit "Sign up", class: "btn btn-outline-light shadow-none btn-lg col-md-auto" %> <!-- IMPORTANT, no comma needed between submit and class! BUT since we've added what it needs to say "Sign up" we DO need a comma now, refer to other form partial for articles to see example without comma necessity. -->
+          <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-outline-light shadow-none btn-lg col-md-auto") %> <!-- IMPORTANT, no comma needed between submit and class! BUT since we've added what it needs to say "Sign up" we DO need a comma now, refer to other form partial for articles to see example without comma necessity. Additional Edit: We used a ternary operator to decide whether the button should say Sign up or Update account based on if the user is new or not -->
         </div>
       <% end %>
     </div>
