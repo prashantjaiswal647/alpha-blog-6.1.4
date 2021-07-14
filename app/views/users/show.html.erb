@@ -2,6 +2,31 @@
 
 <%= gravatar_for @user, size: 200 %>
 
-<h2 class="text-center mt-4">Articles</h2>
+<div class="text-center mt-4">
+  <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-primary shadow-none" %>
+</div>
 
-<%= render 'articles/article', list_of_articles: @user.articles %> <!-- My first partial on my own!! I'm so happy!!! -->
+<%
+def articles_grammar
+  unless @user.articles.count > 1
+    if @user.articles.count == 0
+      "No articles created"
+    else
+      "Article"
+    end
+  else
+    "Articles"
+  end
+end
+%>
+<h2 class="text-center mt-4"><%= articles_grammar %></h2>
+
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>
+
+<%= render 'articles/article' %> <!-- My first partial on my own!! I'm so happy!!! -->
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @articles, :container => false %>
+</div>
