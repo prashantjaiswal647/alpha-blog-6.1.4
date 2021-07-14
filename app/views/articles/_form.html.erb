@@ -5,15 +5,15 @@
       <%= render 'shared/errors' %> <!-- Get the partial errors form -->
       <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-gradient rounded", id: "new-form-color", local: true) do |f| %>
         <div class="form-group row">
-          <%= f.label :title, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
+          <%= f.label :title, class: "col-2 col-form-label text-light label-responsive" %>
+          <div class="col-10 form-responsive">
             <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of article" %>
           </div>
         </div>
 
         <div class="form-group row mt-3">
-          <%= f.label :description, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
+          <%= f.label :description, class: "col-2 col-form-label text-light label-responsive" %>
+          <div class="col-10 form-responsive">
             <%= f.text_area :description, rows: 13, class: "form-control shadow rounded", placeholder: "Description of article" %> <!-- Take up 13 rows -->
           </div>
         </div>
