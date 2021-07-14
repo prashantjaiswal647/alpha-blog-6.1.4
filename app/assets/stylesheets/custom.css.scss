@@ -124,3 +124,12 @@ body {
 .about-purple {
   color:rgb(160, 50, 160)
 }
+
+// Users
+.no-link,
+.no-link:hover,
+.no-link:focus,
+.no-link:active {
+  text-decoration: none;
+  color: #129CF3;
+}

@@ -1,0 +1,28 @@
+<h1 class="text-center mt-4">Alpha Bloggers</h1>
+
+<div class="container">
+  <% @users.each do |user|  %>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded div-responsive">
+          <div class="card-header fst-italic">
+            <%= link_to user.username, user, class: "no-link" %> <!-- user_path(user) was the original path, but Mashrur says it's used so often Rails was developed to know that 'user' would work without the entire path -->
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <div class="d-inline-flex p-2">
+                <%= link_to gravatar_for(user, size: 150), user %> <!-- links the gravatar to also show the profile of the user -->
+              </div>
+            </h5>
+            <h5 class="card-text"><%= pluralize(user.articles.count, "article") %></h5> <!-- pluralize means that if 0 or 2 articles, it will say '# articles', but if 1 articles, it will say '1 article' This makes it grammatically correct -->
+            <%= link_to "View profile", user, class: "btn btn-outline-success shadow-none" %>
+            <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-primary shadow-none" %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
