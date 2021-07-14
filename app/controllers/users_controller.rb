@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "Your account information was updated successfully."
+      flash[:'alert-success'] = "Your account information was updated successfully."
       redirect_to @user
     else
       render 'edit'
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Welcome to the Alpha Blog #{@user.username}, you have successfully signed up!"
+      flash[:'alert-success'] = "Welcome to the Alpha Blog #{@user.username}, you have successfully signed up!"
       redirect_to articles_path
     else
       render 'new'

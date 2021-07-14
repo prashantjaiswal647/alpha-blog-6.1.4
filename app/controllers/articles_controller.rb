@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     @article.user = User.first
     # render plain: @article.inspect # To see the creation for testing purposes
     if @article.save
-      flash[:notice] = "Article was created successfully." # There are two types of flash, notice and alert. Alert is usually for when something goes wrong. This is to show that the article was successfully created.
+      flash[:'alert-success'] = "Article was created successfully." # There are two types of flash, notice and alert. Alert is usually for when something goes wrong. This is to show that the article was successfully created.
       redirect_to @article # Below is longhand, this is shorthand since this is so commonly used.
       # redirect_to article_path(@article) # use rails routes --expanded in console, go up to the show action, then see that the prefix is 'article', meaning article_path, and that it needs the ID, so we give @article which Rails knows to get the ID of the article given, then to redirect_to it and show that view.
     else
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "Article was updated successfully."
+      flash[:'alert-success'] = "Article was updated successfully."
       redirect_to @article # Send to the article
     else
       render 'edit'
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:notice] = "Article was deleted successfully."
+    flash[:'alert-success'] = "Article was deleted successfully."
     redirect_to articles_path # Send to the 'index' table of Articles
   end
 
