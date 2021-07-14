@@ -41,9 +41,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil # IMPORTANT if a user is deleted and the session ID is not cleared, the session will be trying to load with an invalid user, which will cause the webpage to have errors and be unable to load without back-end tinkering.
-    flash[:'alert-successful'] = "Account and all associated articles successfully deleted"
-    redirect_to root_path
+    session[:user_id] = nil if @user == current_user# IMPORTANT if a user is deleted and the session ID is not cleared, the session will be trying to load with an invalid user, which will cause the webpage to have errors and be unable to load without back-end tinkering.
+    flash[:'alert-success'] = "Account and all associated articles successfully deleted"
+    redirect_to(logged_in? && current_user.admin? ? users_path : root_path)
   end
 
   private
@@ -57,8 +57,8 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
-      flash[:'alert-danger'] = "You can only edit your own account"
+    if current_user != @user && !current_user.admin?
+      flash[:'alert-danger'] = "You can only edit or delete your own account"
       redirect_to @user
     end
   end
