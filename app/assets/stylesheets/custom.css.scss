@@ -34,11 +34,16 @@
   font-weight: bold;
 }
 
-.not-logged-in:after {
-  content: "Create new article";
+.not-logged-in:after { content: "Create new article"; }
+.not-logged-in:hover:after { content: "Must log in"; }
+
+.dropdown-divider {
+  color: white;
 }
-.not-logged-in:hover:after {
-  content: "Must log in";
+
+.dangerous-delete-color:hover {
+  color: white !important;
+  background-color: red !important;
 }
 
 // Home Page

@@ -24,8 +24,6 @@
               <%= link_to "", nil, class: "dropdown-item text-white-50 not-logged-in" %> <!-- CSS takes care of this-->
             <% end %>
             <%= link_to "View articles", articles_path, class: "dropdown-item text-light" %>
-            <!-- <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> --> <!-- Unused code -->
           </ul>
         </li>
         <% if logged_in? %>
@@ -36,6 +34,8 @@
             <ul class="dropdown-menu" id="dropdown-black" aria-labelledby="navbarDropdown">
               <%= link_to "View your profile", user_path(current_user), class: "dropdown-item text-light" %>
               <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item text-light" %>
+              <li><hr class="dropdown-divider"></li>
+              <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger dangerous-delete-color", method: :delete, data: { confirm: "Are you sure?" } %>
             </ul>
           </li>
           <li class="nav-item">
