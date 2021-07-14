@@ -1,0 +1,27 @@
+<div class="container">
+  <% list_of_articles.each do |article|  %>
+    <div class="row justify-content-md-center"> <!-- Center the articles & put each one in a new row div -->
+      <div class="col-md-8 mt-4"> <!-- Take up 8 columns of 12, add margin on top of 4. -->
+        <div class="card text-center shadow mb-5 bg-white rounded div-responsive"> <!-- shadow mb-5 bg-white rounded makes a shadow of the cards -->
+          <div class="card-header fst-italic"> <!-- make font italic -->
+            by <%= article.user.username %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success no-outline" %></h5> <!-- bootstrap text-success is green color -->
+            <p class="card-text"><%= truncate(article.description, length: 100) %></p> <!-- Instead of my manual truncation of the description, Bootstrap has functionality for that. Wow. truncated to max length of 100 characters.-->
+            <!-- <a href="#" class="btn btn-outline-success">View</a> -->
+            <%= link_to "View", article_path(article), class: "btn btn-outline-success shadow-none" %>
+            <!-- <a href="#" class="btn btn-outline-primary">Edit</a> -->
+            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary shadow-none" %>
+            <!-- <a href="#" class="btn btn-outline-danger">Delete</a> -->
+            <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger shadow-none" %> <!-- These buttons were converted from HTML to Ruby buttons to link to the correct pages -->
+          </div>
+          <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(article.created_at) %> ago,
+            edited <%= time_ago_in_words(article.updated_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
