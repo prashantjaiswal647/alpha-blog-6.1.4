@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params) # This makes an article by requiring the inputs with params, but only permitting :title and :description hash keys to come through, as a security feature (SEE article_params METHOD BELOW, DRY principle was applied later!). It used to be params[:article]
-    @article.user = User.first
+    @article.user = current_user
     # render plain: @article.inspect # To see the creation for testing purposes
     if @article.save
       flash[:'alert-success'] = "Article was created successfully." # There are two types of flash, notice and alert. Alert is usually for when something goes wrong. This is to show that the article was successfully created.

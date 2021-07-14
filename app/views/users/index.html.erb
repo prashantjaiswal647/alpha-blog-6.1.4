@@ -20,7 +20,9 @@
             </h5>
             <h5 class="card-text"><%= pluralize(user.articles.count, "article") %></h5> <!-- pluralize means that if 0 or 2 articles, it will say '# articles', but if 1 articles, it will say '1 article' This makes it grammatically correct -->
             <%= link_to "View profile", user, class: "btn btn-outline-success shadow-none" %>
-            <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-primary shadow-none" %>
+            <% if logged_in? && user == current_user %>
+              <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-primary shadow-none" %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>

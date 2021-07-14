@@ -9,12 +9,11 @@
           <div class="card-body">
             <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success no-outline" %></h5> <!-- bootstrap text-success is green color -->
             <p class="card-text"><%= truncate(article.description, length: 100) %></p> <!-- Instead of my manual truncation of the description, Bootstrap has functionality for that. Wow. truncated to max length of 100 characters.-->
-            <!-- <a href="#" class="btn btn-outline-success">View</a> -->
             <%= link_to "View", article_path(article), class: "btn btn-outline-success shadow-none" %>
-            <!-- <a href="#" class="btn btn-outline-primary">Edit</a> -->
-            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary shadow-none" %>
-            <!-- <a href="#" class="btn btn-outline-danger">Delete</a> -->
-            <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger shadow-none" %> <!-- These buttons were converted from HTML to Ruby buttons to link to the correct pages -->
+            <% if logged_in? && article.user == current_user %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary shadow-none" %>
+              <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger shadow-none" %>
+            <% end  %>
           </div>
           <div class="card-footer text-muted">
             <small>Created <%= time_ago_in_words(article.created_at) %> ago,
