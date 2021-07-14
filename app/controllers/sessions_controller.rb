@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      flash[:'alert-success'] = "Logged in successfully" # flash notice is used when redirecting to a different page.
+      flash[:'alert-success'] = "Logged in successfully!" # flash notice is used when redirecting to a different page.
       redirect_to user
     else
       flash.now[:'alert-danger'] = "Your login credentials were incorrect" # flash.now is used when re-rendering the same thing. Lots of details, I didn't follow. lol.

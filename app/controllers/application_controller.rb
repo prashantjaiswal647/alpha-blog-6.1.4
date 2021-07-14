@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
     !!current_user # turn current_user into a boolean. bang bang turns it into a boolean. Maybe 2 bangs because TRUE or FALSE. Idk, speculation.
   end
 
+  def require_user
+    if !logged_in?
+      flash[:'alert-danger'] = "You must be logged in to perform that action"
+      redirect_to login_path
+    end
+  end
+
 end

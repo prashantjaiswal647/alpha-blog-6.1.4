@@ -18,15 +18,25 @@
             Articles
           </a>
           <ul class="dropdown-menu" id="dropdown-black" aria-labelledby="navbarDropdown">
-            <%= link_to "Create new article", new_article_path, class: "dropdown-item text-light" %>
+            <% if logged_in? %>
+              <%= link_to "Create new article", new_article_path, class: "dropdown-item text-light" %>
+            <% else %>
+              <%= link_to "", nil, class: "dropdown-item text-white-50 not-logged-in" %> <!-- CSS takes care of this-->
+            <% end %>
             <%= link_to "View articles", articles_path, class: "dropdown-item text-light" %>
             <!-- <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li> --> <!-- Unused code -->
           </ul>
         </li>
         <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              [ <%= current_user.username %> ]
+            </a>
+            <ul class="dropdown-menu" id="dropdown-black" aria-labelledby="navbarDropdown">
+              <%= link_to "View your profile", user_path(current_user), class: "dropdown-item text-light" %>
+              <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item text-light" %>
+            </ul>
           </li>
           <li class="nav-item">
             <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_logged_out, only: [:new, :create]
 
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:'alert-success'] = "Your account information was updated successfully."
+      flash[:'alert-success'] = "Your account information was updated successfully"
       redirect_to @user
     else
       render 'edit'
@@ -44,6 +47,20 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:'alert-danger'] = "You can only edit your own account"
+      redirect_to @user
+    end
+  end
+
+  def require_logged_out
+    if logged_in?
+      flash[:'alert-danger'] = "You are already logged in as #{current_user.username}"
+      redirect_to user_path(current_user)
+    end
   end
 
 end
