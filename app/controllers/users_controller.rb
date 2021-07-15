@@ -39,11 +39,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # def destroy # Old destroy breaks the webpage. Took 4 hours to fix. Never remove this code so you can always remember not to make this mistake again. @user.destroy causes current_user to become nil so session is unable to become nil because of comparison between nil and old existing user, so everything breaks after that. Duplicating the variable with .dup to another variable doesn't work either because user_id doesn't get duplicated since it is created by Ruby for each User and can only increment. This is evil. Never uncomment this.
+  #   @user.destroy
+  #   session[:user_id] = nil if @user == current_user # IMPORTANT if a user is deleted and the session ID is not cleared, the session will be trying to load with an invalid user, which will cause the webpage to have errors and be unable to load without back-end tinkering.
+  #   flash[:'alert-success'] = "Account and all associated articles successfully deleted"
+  #   #redirect_to(logged_in? && current_user.admin? ? users_path : root_path)
+  #   redirect_to articles_path
+  # end
   def destroy
+    if @user == current_user
+      session[:user_id] = nil
+    end
     @user.destroy
-    session[:user_id] = nil if @user == current_user# IMPORTANT if a user is deleted and the session ID is not cleared, the session will be trying to load with an invalid user, which will cause the webpage to have errors and be unable to load without back-end tinkering.
     flash[:'alert-success'] = "Account and all associated articles successfully deleted"
-    redirect_to(logged_in? && current_user.admin? ? users_path : root_path)
+    if !current_user.nil?
+      redirect_to users_path 
+    else
+      redirect_to root_path
+    end
   end
 
   private
