@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new' # Manually creating routes for logging in and logging out. Manually adding sessions controller to handle this.
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  resources :categories
 end

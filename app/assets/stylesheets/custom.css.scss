@@ -111,6 +111,19 @@ body {
   text-decoration: none;
 }
 
+// Articles
+.category-badge {
+  background-color: #0d649b;
+  margin-right: 1em;
+  text-decoration: none;
+  &:hover,
+  &:focus,
+  &:active {
+    color: white;
+    text-decoration: none;
+  }
+}
+
 // About Page
 
 #about-line {
