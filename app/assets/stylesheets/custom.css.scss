@@ -124,6 +124,10 @@ body {
   }
 }
 
+.gravatar-top-margin {
+  margin-top: 2em;
+}
+
 // About Page
 
 #about-line {
@@ -188,3 +192,15 @@ body {
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
+
+// Users (Admin)
+.admin-badge {
+  background-color: #0d649b;
+  text-decoration: none;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ff0000;
+    text-decoration: none;
+  }
+}

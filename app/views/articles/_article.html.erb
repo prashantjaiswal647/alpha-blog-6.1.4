@@ -4,7 +4,7 @@
       <div class="col-md-8 mt-4"> <!-- Take up 8 columns of 12, add margin on top of 4. -->
         <div class="card text-center shadow mb-5 bg-white rounded div-responsive"> <!-- shadow mb-5 bg-white rounded makes a shadow of the cards -->
           <div class="card-header fst-italic"> <!-- make font italic -->
-            by <%= link_to article.user.username, user_path(article.user), class: "no-link" %>
+            by <span class="admin-font badge rounded-pill admin-badge"><%= "Admin" if article.user.admin? %></span><%= link_to " " << article.user.username, user_path(article.user), class: "no-link" %>
             <% if article.categories.any? %>
               <div class="mt-2"><%= render article.categories %></div>
             <% end %>

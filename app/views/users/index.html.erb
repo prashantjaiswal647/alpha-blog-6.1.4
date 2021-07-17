@@ -10,7 +10,7 @@
       <div class="col-md-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded div-responsive">
           <div class="card-header fst-italic">
-            <%= link_to user.username, user, class: "no-link" %> <!-- user_path(user) was the original path, but Mashrur says it's used so often Rails was developed to know that 'user' would work without the entire path -->
+            <span class="admin-font badge rounded-pill admin-badge"><%= "Admin" if user.admin? %></span><%= link_to " " << user.username, user, class: "no-link" %> <!-- user_path(user) was the original path, but Mashrur says it's used so often Rails was developed to know that 'user' would work without the entire path -->
           </div>
           <div class="card-body">
             <h5 class="card-title">
